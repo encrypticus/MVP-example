@@ -1,19 +1,14 @@
-/* eslint-disable */
-import Event from '../src/js/Event';
-import PanelModel from '../src/js/PanelModel';
-import User from '../src/ts/User';
+import PanelModel from '../src/ts/PanelModel';
+import Event from '../src/ts/Event';
 
 describe('PanelModel', () => {
-  let model;
-  let user;
+  let model: PanelModel;
 
   beforeAll(() => {
     model = new PanelModel();
-    user = new User();
   });
 
   it('Переменная model будет ссылаться на объект класса PanelModel', () => {
-    // model является экземпляром класса PanelModel
     expect(model instanceof PanelModel).toBeTruthy();
 
     // model содержит свойство values, являющееся пустым массивом
@@ -25,12 +20,18 @@ describe('PanelModel', () => {
     // model содержит свойство removeFirstValueEvent, являющееся экземпляром класса Event
     expect(model).toEqual(jasmine.objectContaining({removeFirstValueEvent: new Event()}));
 
+    // model содержит свойство removeLastValueEvent, являющееся экземпляром класса Event
+    expect(model).toEqual(jasmine.objectContaining({removeLastValueEvent: new Event()}));
+
+    // model содержит свойство removeAllValuesEvent, являющееся экземпляром класса Event
+    expect(model).toEqual(jasmine.objectContaining({removeAllValuesEvent: new Event()}));
+
     //model содержит указанные методы
     expect(model.getValues).toEqual(jasmine.any(Function));
     expect(model.addValue).toEqual(jasmine.any(Function));
-    expect(model.removeAllValues).toEqual(jasmine.any(Function));
-    expect(model.removeLastValue).toEqual(jasmine.any(Function));
     expect(model.removeFirstValue).toEqual(jasmine.any(Function));
+    expect(model.removeLastValue).toEqual(jasmine.any(Function));
+    expect(model.removeAllValues).toEqual(jasmine.any(Function));
   });
 
   it('Свойство values объекта model будет содержать пустой массив', () => {
@@ -86,6 +87,5 @@ describe('PanelModel', () => {
 
     expect(model.getValues()).toEqual([]);
     expect(model.values).toEqual([]);
-  })
-
-});
+  });
+})

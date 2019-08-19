@@ -1,2 +1,3 @@
 import '../sass/styles.scss';
-import './App';
+import '../ts/App.ts';
+// import './App';
