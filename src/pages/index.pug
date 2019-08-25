@@ -6,13 +6,30 @@ block title
 
 block content
   body
+    h1 Пример реализации архитектуры MVP с несколькими View
     div.container
-      h1 Custom MVP
-      div.panel
-      input.addInput(type="text")
-      button.addButton Добавить элемент
-      button.removeFirstValueButton Удалить первый элемент
-      button.removeLastValueButton Удалить последний элемент
-      button.removeAllValuesButton Очистить панель
+      div.buttons-view
+        div.panel
+        div.panel__wrapper
+          input.addInput(type="text")
+          button.addValueButton Добавить элемент
+          button.removeFirstValueButton Удалить первый элемент
+          button.removeLastValueButton Удалить последний элемент
+          button.removeAllValuesButton Очистить панель
+
+      form.radio
+        label
+          input.radio-btn(type="radio", name="radio-btn", value="addValue")
+          | Добавить элемент
+        label
+          input.radio-btn(type="radio", name="radio-btn", value="removeFirstValue")
+          | Удалить первый элемент
+        label
+          input.radio-btn(type="radio", name="radio-btn", value="removeLastValue")
+          | Удалить последний элемент
+        label
+          input.radio-btn(type="radio", name="radio-btn", value="removeAllValues")
+          | Очистить панель
+        input.addRadioInput(type="text")
 
     script(src="index.js")

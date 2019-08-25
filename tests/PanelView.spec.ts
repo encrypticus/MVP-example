@@ -4,7 +4,7 @@ describe('PanelView', () => {
   let view: PanelView;
 
   beforeEach(() => {
-    setFixtures('<div class="container"><div class="panel"></div><input class="addInput"><button class="addButton"></button><button class="removeLastValueButton"></button><button class="removeFirstValueButton"></button><button class="removeAllValuesButton"></button></div>');
+    setFixtures('<div class="container"><div class="panel"></div><input class="addInput"><button class="addValueButton"></button><button class="removeLastValueButton"></button><button class="removeFirstValueButton"></button><button class="removeAllValuesButton"></button></div>');
     view = new PanelView();
   });
 
@@ -17,9 +17,9 @@ describe('PanelView', () => {
     expect(view.panel).toHaveClass('panel');
   });
 
-  it('Объект будет содержать свойство addButton', () => {
-    expect(view).toEqual(jasmine.objectContaining({addButton: document.querySelector('.addButton')}));
-    expect(view.addButton).toHaveClass('addButton');
+  it('Объект будет содержать свойство addValueButton', () => {
+    expect(view).toEqual(jasmine.objectContaining({addValueButton: document.querySelector('.addValueButton')}));
+    expect(view.addValueButton).toHaveClass('addValueButton');
   });
 
   it('Объект будет содержать свойство removeFirstValueButton', () => {
@@ -40,20 +40,20 @@ describe('PanelView', () => {
     expect(view.addInput).toHaveClass('addInput');
   });
 
-  it('Объект будет содержать метод addButtonHandler', () => {
-    expect(view.addButtonHandler).toEqual(jasmine.any(Function));
+  it('Объект будет содержать метод addValueHandler', () => {
+    expect(view.addValueHandler).toEqual(jasmine.any(Function));
   });
 
-  it('Объект будет содержать метод removeFirstValueButtonHandler', () => {
-    expect(view.removeFirstValueButtonHandler).toEqual(jasmine.any(Function));
+  it('Объект будет содержать метод removeFirstValueHandler', () => {
+    expect(view.removeFirstValueHandler).toEqual(jasmine.any(Function));
   });
 
-  it('Объект будет содержать метод removeLastValueButtonHandler', () => {
-    expect(view.removeLastValueButtonHandler).toEqual(jasmine.any(Function));
+  it('Объект будет содержать метод removeLastValueHandler', () => {
+    expect(view.removeLastValueHandler).toEqual(jasmine.any(Function));
   });
 
-  it('Объект будет содержать метод removeAllValuesButtonHandler', () => {
-    expect(view.removeAllValuesButtonHandler).toEqual(jasmine.any(Function));
+  it('Объект будет содержать метод removeAllValuesHandler', () => {
+    expect(view.removeAllValuesHandler).toEqual(jasmine.any(Function));
   });
 
   it('Объект будет содержать метод clearPanel', () => {
@@ -64,23 +64,23 @@ describe('PanelView', () => {
     expect(view.addItem).toEqual(jasmine.any(Function));
   });
 
-  it('Метод addButtonHandler объекта view будет вызван', () => {
-    spyOn(view, 'addButtonHandler');
-    view.addButtonHandler(() => {console.log('method have been called')});
+  it('Метод addValueHandler объекта view будет вызван', () => {
+    spyOn(view, 'addValueHandler');
+    view.addValueHandler(() => {console.log('method have been called')});
 
-    expect(view.addButtonHandler).toHaveBeenCalled();
+    expect(view.addValueHandler).toHaveBeenCalled();
   });
 
-  it('Методу addButtonHandler в качестве параметра будет передана функция', () => {
-    spyOn(view, 'addButtonHandler');
+  it('Методу addValueHandler в качестве параметра будет передана функция', () => {
+    spyOn(view, 'addValueHandler');
 
     const handler = function handler() {
       console.log('handler');
     };
 
-    view.addButtonHandler(handler);
+    view.addValueHandler(handler);
 
-    expect(view.addButtonHandler).toHaveBeenCalledWith(handler);
+    expect(view.addValueHandler).toHaveBeenCalledWith(handler);
     expect(typeof handler === 'function').toBeTruthy();
   });
 
@@ -109,19 +109,19 @@ describe('PanelView', () => {
     expect(view.panel).not.toContainElement('.item');
   });
 
-  it('Клик по кнопке с классом addButton выведет в консоль сообщение "В панель был добавлен новый элемент"', () => {
-    view.addButtonHandler(() => {console.log('В панель был добавлен новый элемент')});
+  it('Клик по кнопке с классом addValueButton выведет в консоль сообщение "В панель был добавлен новый элемент"', () => {
+    view.addValueHandler(() => {console.log('В панель был добавлен новый элемент')});
 
-    const spyEvent = spyOnEvent('.addButton', 'click');
+    const spyEvent = spyOnEvent('.addValueButton', 'click');
 
-    view.addButton.click();
+    view.addValueButton.click();
 
     expect(spyEvent).toHaveBeenTriggered();
-    expect('click').toHaveBeenTriggeredOn('.addButton');
+    expect('click').toHaveBeenTriggeredOn('.addValueButton');
   });
 
   it('Клик по кнопке с классом removeFirstValueButton выведет в консоль сообщение "Из панели был удален первый элемент"', () => {
-    view.removeFirstValueButtonHandler(() => {console.log('Из панели был удален первый элемент')});
+    view.removeFirstValueHandler(() => {console.log('Из панели был удален первый элемент')});
 
     const spyEvent = spyOnEvent('.removeFirstValueButton', 'click');
 
@@ -132,7 +132,7 @@ describe('PanelView', () => {
   });
 
   it('Клик по кнопке с классом removeLastValueButton выведет в консоль сообщение "Из панели был удален последний элемент"', () => {
-    view.removeLastValueButtonHandler(() => {console.log('Из панели был удален последний элемент')});
+    view.removeLastValueHandler(() => {console.log('Из панели был удален последний элемент')});
 
     const spyEvent = spyOnEvent('.removeLastValueButton', 'click');
 
@@ -143,7 +143,7 @@ describe('PanelView', () => {
   });
 
   it('Клик по кнопке с классом removeAllValuesButton выведет в консоль сообщение "Из панели были удалены все элементы"', () => {
-    view.removeAllValuesButtonHandler(() => {console.log('Из панели были удаленты все элемнты')});
+    view.removeAllValuesHandler(() => {console.log('Из панели были удаленты все элемнты')});
 
     const spyEvent = spyOnEvent('.removeAllValuesButton', 'click');
     view.removeAllValuesButton.click();
@@ -154,7 +154,7 @@ describe('PanelView', () => {
 
   it('Клик по кнопке removeAlValuesButton вызовет метод clearInput', () => {
     const clearPanel = view.clearPanel.bind(view);
-    view.removeAllValuesButtonHandler(clearPanel);
+    view.removeAllValuesHandler(clearPanel);
     spyOn(view, 'clearInput');
     view.removeAllValuesButton.click();
 

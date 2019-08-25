@@ -1,6 +1,8 @@
-class PanelView {
+import IView from './IView';
+
+class PanelView implements IView {
   panel;
-  addButton;
+  addValueButton;
   removeFirstValueButton;
   removeLastValueButton;
   removeAllValuesButton;
@@ -8,26 +10,26 @@ class PanelView {
 
   constructor() {
     this.panel = document.querySelector('.panel');
-    this.addButton = document.querySelector('.addButton');
+    this.addValueButton = document.querySelector('.addValueButton');
     this.removeFirstValueButton = document.querySelector('.removeFirstValueButton');
     this.removeLastValueButton = document.querySelector('.removeLastValueButton');
     this.removeAllValuesButton = document.querySelector('.removeAllValuesButton');
     this.addInput = document.querySelector('.addInput');
   }
 
-  addButtonHandler(handler: () => void): void {
-    this.addButton.addEventListener('click', handler);
+  addValueHandler(handler: () => void): void {
+    this.addValueButton.addEventListener('click', handler);
   }
 
-  removeFirstValueButtonHandler(handler: () => void): void {
+  removeFirstValueHandler(handler: () => void): void {
     this.removeFirstValueButton.addEventListener('click', handler);
   }
 
-  removeLastValueButtonHandler(handler: () => void): void {
+  removeLastValueHandler(handler: () => void): void {
     this.removeLastValueButton.addEventListener('click', handler);
   }
 
-  removeAllValuesButtonHandler(handler: () => void): void {
+  removeAllValuesHandler(handler: () => void): void {
     this.removeAllValuesButton.addEventListener('click', handler);
   }
 

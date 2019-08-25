@@ -1,32 +1,36 @@
-import PanelView from "./PanelView";
-import PanelModel from "./PanelModel";
+import PanelModel from './PanelModel';
 
 class PanelPresenter {
-  view: PanelView;
+  views;
   model: PanelModel;
 
-  constructor(view: PanelView, model: PanelModel) {
-    this.view = view;
+  constructor(views, model: PanelModel) {
+    this.views = views;
     this.model = model;
     this.init();
   }
 
   init() {
-    this.view.addButtonHandler(() => {
-      this.addValue(this.view.addInput.value);
-    });
 
-    this.view.removeFirstValueButtonHandler(() => {
-      this.removeFirstValue();
-    });
+    for(let view in this.views) {
+      let currentView = this.views[view];
+      currentView.addValueHandler(() => {
+        this.addValue(this.views[view].addInput.value);
+      });
 
-    this.view.removeLastValueButtonHandler(() => {
-      this.removeLastValue();
-    });
+      currentView.removeFirstValueHandler(() => {
+        this.removeFirstValue();
+      });
 
-    this.view.removeAllValuesButtonHandler(() => {
-      this.removeAllValues();
-    });
+      currentView.removeLastValueHandler(() => {
+        this.removeLastValue();
+      });
+
+      currentView.removeAllValuesHandler(() => {
+        this.removeAllValues();
+      });
+    }
+
 
     this.model.addValueEvent.attach(this.updatePanel.bind(this));
     this.model.removeFirstValueEvent.attach(this.updatePanel.bind(this));
@@ -52,9 +56,9 @@ class PanelPresenter {
   }
 
   updatePanel(): void {
-    this.view.clearPanel();
+    this.views.panelView.clearPanel();
     this.model.getValues().forEach((item, i) => {
-      this.view.addItem(item);
+      this.views.panelView.addItem(item);
     });
   }
 }
