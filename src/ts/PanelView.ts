@@ -7,6 +7,7 @@ class PanelView implements IView {
   removeLastValueButton;
   removeAllValuesButton;
   addInput;
+  form;
 
   constructor() {
     this.panel = document.querySelector('.panel');
@@ -15,10 +16,12 @@ class PanelView implements IView {
     this.removeLastValueButton = document.querySelector('.removeLastValueButton');
     this.removeAllValuesButton = document.querySelector('.removeAllValuesButton');
     this.addInput = document.querySelector('.addInput');
+    this.form = document.querySelector('.panel__form');
   }
 
   addValueHandler(handler: () => void): void {
     this.addValueButton.addEventListener('click', handler);
+    this.form.addEventListener('submit', handler);
   }
 
   removeFirstValueHandler(handler: () => void): void {

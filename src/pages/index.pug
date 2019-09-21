@@ -10,14 +10,14 @@ block content
     div.container
       div.buttons-view
         div.panel
-        div.panel__wrapper
+        form.panel__form
           input.addInput(type="text")
           button.addValueButton Добавить элемент
           button.removeFirstValueButton Удалить первый элемент
           button.removeLastValueButton Удалить последний элемент
           button.removeAllValuesButton Очистить панель
 
-      form.radio
+      form.radio-form
         label
           input.radio-btn(type="radio", name="radio-btn", value="addValue")
           | Добавить элемент

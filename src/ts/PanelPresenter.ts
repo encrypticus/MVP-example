@@ -14,8 +14,15 @@ class PanelPresenter {
 
     for(let view in this.views) {
       let currentView = this.views[view];
-      currentView.addValueHandler(() => {
-        this.addValue(this.views[view].addInput.value);
+      currentView.addValueHandler((event) => {
+        event.preventDefault();
+
+        let value = this.views[view].addInput.value;
+        value = value.trim();
+
+        if (value === '') return;
+
+        this.addValue(value);
       });
 
       currentView.removeFirstValueHandler(() => {
@@ -40,7 +47,6 @@ class PanelPresenter {
 
   addValue(value): void {
     this.model.addValue(value);
-    // this.updatePanel();
   }
 
   removeFirstValue(): void {
@@ -57,6 +63,7 @@ class PanelPresenter {
 
   updatePanel(): void {
     this.views.panelView.clearPanel();
+    this.views.radioButtonView.clearInput();
     this.model.getValues().forEach((item, i) => {
       this.views.panelView.addItem(item);
     });

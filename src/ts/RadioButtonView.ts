@@ -6,6 +6,7 @@ class RadioButtonView implements IView {
   removeLastValueRadioButton;
   removeAllValuesRadioButton;
   addInput;
+  form;
 
   constructor() {
     this.addValueRadioButton = document.querySelectorAll('.radio-btn')[0];
@@ -13,10 +14,12 @@ class RadioButtonView implements IView {
     this.removeLastValueRadioButton = document.querySelectorAll('.radio-btn')[2];
     this.removeAllValuesRadioButton = document.querySelectorAll('.radio-btn')[3];
     this.addInput = document.querySelector('.addRadioInput');
+    this.form = document.querySelector('.radio-form');
   }
 
   addValueHandler(handler: () => void): void {
     this.addValueRadioButton.addEventListener('change', handler);
+    this.form.addEventListener('submit', handler);
   }
 
   removeFirstValueHandler(handler: () => void): void {

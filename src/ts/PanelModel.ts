@@ -37,7 +37,7 @@ class PanelModel {
 
   removeLastValue(): void {
     if (this.values.length === 0) return;
-    this.values.splice(-1, 1);
+    this.values.pop();
     this.removeLastValueEvent.notify();
   }
 }
